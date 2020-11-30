@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96280CA4257545BC006E7BF4 /* selectUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96280CA3257545BC006E7BF4 /* selectUserView.swift */; };
 		96AE6B44254B15E9009F60CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6B43254B15E9009F60CF /* AppDelegate.swift */; };
 		96AE6B46254B15E9009F60CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6B45254B15E9009F60CF /* SceneDelegate.swift */; };
 		96AE6B48254B15E9009F60CF /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6B47254B15E9009F60CF /* DetailVC.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96280CA3257545BC006E7BF4 /* selectUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectUserView.swift; sourceTree = "<group>"; };
 		96AE6B40254B15E9009F60CF /* BambooTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BambooTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AE6B43254B15E9009F60CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96AE6B45254B15E9009F60CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96280CA125754575006E7BF4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		96AE6B37254B15E8009F60CF = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				96AE6B47254B15E9009F60CF /* DetailVC.swift */,
+				96280CA3257545BC006E7BF4 /* selectUserView.swift */,
 				96AE6B58254B187F009F60CF /* TableVC.swift */,
 			);
 			path = Controllers;
@@ -97,6 +107,7 @@
 		96AE6BBC2551ACB8009F60CF /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				96280CA125754575006E7BF4 /* New Group */,
 				96AE6B43254B15E9009F60CF /* AppDelegate.swift */,
 				96AE6B45254B15E9009F60CF /* SceneDelegate.swift */,
 				96AE6B4C254B15EB009F60CF /* Assets.xcassets */,
@@ -176,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96AE6BAC25506B1E009F60CF /* Item.swift in Sources */,
+				96280CA4257545BC006E7BF4 /* selectUserView.swift in Sources */,
 				96AE6B48254B15E9009F60CF /* DetailVC.swift in Sources */,
 				96AE6B44254B15E9009F60CF /* AppDelegate.swift in Sources */,
 				96AE6B59254B187F009F60CF /* TableVC.swift in Sources */,
