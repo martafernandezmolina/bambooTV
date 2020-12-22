@@ -75,20 +75,20 @@ class InitialSelectUser: UIViewController {
   
   
   @IBAction func secondButton(_ sender: Any) {
-    print("button 2 funciona")
+    print("Button two is ok 🥳")
     
     profiles = newProfileManager.readProfiles()
     
     if  profiles.count  >  1  && editable == false {
-      // filmElements.userSelectionTableButton.image = profiles[1].imagemini
       
       MoviesViewModel.selectedProfile = profiles[1].name
-      
+      UsersViewModel.selectedProfileAgain = profiles[0]
+
       dismiss(animated: true)
       
     } else {
+     
       performSegue(withIdentifier: "goToDetail", sender: nil)
-      //      UsersViewModel.selectedProfileAgain = profiles[1]
     }
   }
   
@@ -97,14 +97,14 @@ class InitialSelectUser: UIViewController {
     profiles = newProfileManager.readProfiles()
     
     if  profiles.count > 2  && editable == false {
-      //filmElements.userSelectionTableButton.image = profiles[2].imagemini
       MoviesViewModel.selectedProfile = profiles[2].name
+      UsersViewModel.selectedProfileAgain = profiles[2]
+
       dismiss(animated: true)
       
     } else {
       
       performSegue(withIdentifier: "goToDetail", sender: nil)
-      //      UsersViewModel.selectedProfileAgain = profiles[2]
     }
     
   }
@@ -115,15 +115,16 @@ class InitialSelectUser: UIViewController {
     if  profiles.count > 3 && editable == false{
       
       MoviesViewModel.selectedProfile = profiles[3].name
+      UsersViewModel.selectedProfileAgain = profiles[3]
+      
       dismiss(animated: true)
     } else {
       performSegue(withIdentifier: "goToDetail", sender: nil)
-     // UsersViewModel.selectedProfileAgain = profiles[3]
-      
+
       
     }
   }
-  // NEXT STEP crear array y recorrer para setear img. Falta loop!!
+  // Mejor hacer array y recorrer para setear img. Falta loop!! 😱
   
   override func viewWillAppear(_ animated: Bool) {
     print(" \n\n InitialSelectUser - \(#function)")
@@ -150,6 +151,7 @@ class InitialSelectUser: UIViewController {
     }
     
     print (" -  profiles: (profiles)")
+    
     for (index, item) in profiles.enumerated(){
       if index == 0 {
         firstUser.text = profiles[0].name
@@ -167,20 +169,5 @@ class InitialSelectUser: UIViewController {
     ListoOutlet.hide()
     editOutlet.show()
   }
-  
-  
-  func resetProfileButtons() {
-    //          let defaultImage = UIImage(systemName: "plus")
-    //    oldimage.detailImgButton.backgroundImage(for: <#T##UIControl.State#>)
-    //
-    //    oldimage.
-    //    detailImgButton2.
-    //      //    for button in profileButtons {
-    //              button.setBackgroundImage(defaultImage, for: .normal)
-  }
-  
-  
-  
-  
   
 }

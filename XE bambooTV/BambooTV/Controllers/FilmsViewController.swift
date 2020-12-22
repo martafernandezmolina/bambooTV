@@ -25,13 +25,15 @@ class FilmsViewController: UITableViewController, MoviesStackCellDelegate {
   var movies:[Movie] = []
   
   private var profileSelectionScreenNeeded: Bool = true
+  
   var myKey:String = "myKey"
+  
   @IBOutlet weak var userSelectionTableButton: UIBarButtonItem!
 
   @IBAction func userSelectionButton(_ sender: Any) {
     
     performSegue(withIdentifier: "goToProfileSelection", sender: nil)
-    //dismiss(animated: true)
+   
   }
   
   
