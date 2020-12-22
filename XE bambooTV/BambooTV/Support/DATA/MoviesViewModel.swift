@@ -11,6 +11,7 @@ struct MoviesViewModel {
  
   static var selectedMovieID: Int?
   static var selectedProfile: String?
+  //static var ownSelectedProfile: Profile!
 
 }
 

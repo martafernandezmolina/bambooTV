@@ -32,9 +32,10 @@ class SetUserViewController: UIViewController {
   
   @IBAction func delateButton(_ sender: Any) {
    
-    guard let anOtherProf:Profile = UsersViewModel.selectedProfileAgain else {return}
-    profileManager.removeObject(profile: anOtherProf)
-    
+    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {return}
+    print("delate button is working and  should wipe out")
+    profileManager.removeProfile(choosedProfile)
+    //profileManager.MyRemoveObject(profile: choosedProfile)
     self.navigationController?.popViewController(animated: true)
     
   }
@@ -84,4 +85,3 @@ class SetUserViewController: UIViewController {
   }
 
 }
-

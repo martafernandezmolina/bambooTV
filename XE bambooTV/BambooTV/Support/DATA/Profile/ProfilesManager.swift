@@ -46,10 +46,11 @@ struct ProfileManager {
   }
   
 
-  func removeObject( profile:Profile){
+  func MyRemoveObject( profile:Profile){
     var storedProfiles = readProfiles()
     if let index = storedProfiles.firstIndex(of: profile){
       storedProfiles.remove(at:index)}
+    // ok
   }
   
   private func saveAllProfiles(_ profiles: [Profile]) {

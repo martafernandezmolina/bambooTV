@@ -27,9 +27,9 @@ class InitialSelectUser: UIViewController {
   }
   @IBOutlet weak var ListoOutlet: UIBarButtonItem!
   
- 
+  
   @IBAction func ListoAction(_ sender: Any) {
-   
+    
     ListoOutlet.hide()
     editOutlet.show()
     editable = false
@@ -55,15 +55,14 @@ class InitialSelectUser: UIViewController {
   // MARK: - Actions
   
   @IBAction func firstButtonChoosed(_ sender: UIButton) {
-  
+    
     print(" - button 1 funciona")
     
     profiles = newProfileManager.readProfiles()
     
     if profiles.count > 0 && editable == false {
       
-   // filmElements.userSelectionTableButton.image = profiles[0].imagemini ??
-     MoviesViewModel.selectedProfile = profiles[0].imageName
+      MoviesViewModel.selectedProfile = profiles[0].name
       dismiss(animated: true)
     } else{
       
@@ -77,15 +76,16 @@ class InitialSelectUser: UIViewController {
     
     profiles = newProfileManager.readProfiles()
     
-    if  profiles.count  >  1 && editable == false {
-     // filmElements.userSelectionTableButton.image = profiles[1].imagemini
-
-      MoviesViewModel.selectedProfile = profiles[1].imageName
+    if  profiles.count  >  1  && editable == false {
+      // filmElements.userSelectionTableButton.image = profiles[1].imagemini
+      
+      MoviesViewModel.selectedProfile = profiles[1].name
+      
       dismiss(animated: true)
       
     } else {
       performSegue(withIdentifier: "goToDetail", sender: nil)
-//      UsersViewModel.selectedProfileAgain = profiles[1]
+      //      UsersViewModel.selectedProfileAgain = profiles[1]
     }
   }
   
@@ -95,13 +95,13 @@ class InitialSelectUser: UIViewController {
     
     if  profiles.count > 2  && editable == false {
       //filmElements.userSelectionTableButton.image = profiles[2].imagemini
-    MoviesViewModel.selectedProfile = profiles[2].imageName
+      MoviesViewModel.selectedProfile = profiles[2].name
       dismiss(animated: true)
       
     } else {
       
       performSegue(withIdentifier: "goToDetail", sender: nil)
-//      UsersViewModel.selectedProfileAgain = profiles[2]
+      //      UsersViewModel.selectedProfileAgain = profiles[2]
     }
     
   }
@@ -110,13 +110,12 @@ class InitialSelectUser: UIViewController {
     profiles = newProfileManager.readProfiles()
     
     if  profiles.count > 3 && editable == false{
-    //  filmElements.userSelectionTableButton.image = profiles[3].imagemini
-
-      MoviesViewModel.selectedProfile = profiles[3].imageName
+      
+      MoviesViewModel.selectedProfile = profiles[3].name
       dismiss(animated: true)
     } else {
       performSegue(withIdentifier: "goToDetail", sender: nil)
-     UsersViewModel.selectedProfileAgain = profiles[3]
+      UsersViewModel.selectedProfileAgain = profiles[3]
       
       
     }
@@ -126,7 +125,7 @@ class InitialSelectUser: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     print(" \n\n InitialSelectUser - \(#function)")
     ListoOutlet.hide()
-     editable = false
+    editable = false
     
     profiles = newProfileManager.readProfiles()
     
@@ -168,16 +167,17 @@ class InitialSelectUser: UIViewController {
   
   
   func resetProfileButtons() {
-          let defaultImage = UIImage(systemName: "plus")
-    oldimage.detailImgButton.backgroundImage(for: <#T##UIControl.State#>)
- 
-//    oldimage.
-//    detailImgButton2.
-//      //    for button in profileButtons {
-//              button.setBackgroundImage(defaultImage, for: .normal)
+    //          let defaultImage = UIImage(systemName: "plus")
+    //    oldimage.detailImgButton.backgroundImage(for: <#T##UIControl.State#>)
+    //
+    //    oldimage.
+    //    detailImgButton2.
+    //      //    for button in profileButtons {
+    //              button.setBackgroundImage(defaultImage, for: .normal)
+  }
+  
+  
+  
+  
+  
 }
-
-
-
-
-
