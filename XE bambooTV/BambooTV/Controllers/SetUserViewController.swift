@@ -31,11 +31,8 @@ class SetUserViewController: UIViewController {
   
   
   @IBAction func delateButton(_ sender: Any) {
-   
-    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {return}
-    print("delate button is working and  should wipe out")
-    profileManager.removeProfile(choosedProfile)
-    //profileManager.MyRemoveObject(profile: choosedProfile)
+    delateFunction()
+    
     self.navigationController?.popViewController(animated: true)
     
   }
@@ -51,7 +48,7 @@ class SetUserViewController: UIViewController {
     var profile:Profile = Profile(name: "", imageName: "", id: 0)
    
     profile.name = saveInfoNameString
-    profile.imageName = UsersViewModel.usersImage ?? "asdasd"
+    profile.imageName = UsersViewModel.usersImage ?? "defult text"
     
     profile.id = UsersViewModel.idImages ?? 1
     print (" -  BEFORE   profileManager.saveProfile(profile): \(profile) ")
@@ -84,4 +81,25 @@ class SetUserViewController: UIViewController {
     }
   }
 
+  
+  func delateFunction(){
+    
+    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {return}
+    print("delate button is working and  should wipe it out")
+    profileManager.removeProfile(choosedProfile)
+    //profileManager.MyRemoveObject(profile: choosedProfile)
+    
+    
+  }
+  
+  
+  func saveUsersDefault {
+    
+    
+  }
+  
+  
+  
+  
+  
 }

@@ -47,11 +47,14 @@ class InitialSelectUser: UIViewController {
   
   @IBOutlet weak var fourthUser: UILabel!
   
-  // botones para setear imagenes
+  // MARK: - SET BUTTONS IMAGES
+  
   @IBOutlet weak var boton1outlet: UIButton!
   @IBOutlet weak var boton2outlet: UIButton!
   @IBOutlet weak var boton3outlet: UIButton!
   @IBOutlet weak var boton4outlet: UIButton!
+  
+  
   // MARK: - Actions
   
   @IBAction func firstButtonChoosed(_ sender: UIButton) {
@@ -115,7 +118,7 @@ class InitialSelectUser: UIViewController {
       dismiss(animated: true)
     } else {
       performSegue(withIdentifier: "goToDetail", sender: nil)
-      UsersViewModel.selectedProfileAgain = profiles[3]
+     // UsersViewModel.selectedProfileAgain = profiles[3]
       
       
     }
