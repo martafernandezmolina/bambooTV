@@ -133,34 +133,27 @@ class InitialSelectUser: UIViewController {
     
     profiles = newProfileManager.readProfiles()
     
-    if profiles.count > 0 {
-      guard let img =  profiles[0].image else {return}
-      boton1outlet.setImage(img, for: .normal)}
-    if profiles.count > 1{
-      if let image2 =  profiles[1].image{
-        boton2outlet.setImage(image2, for: .normal)
-      }}
-    if profiles.count > 2 {
-      if let image3 =  profiles[2].image{
-        boton3outlet.setImage(image3, for: .normal)
-      }}
-    if profiles.count > 3{
-      guard let img4 = profiles[3].image else {return}
-      boton4outlet.setImage(img4, for: .normal)
-      
-    }
+
     
     print (" -  profiles: (profiles)")
-    
+  //  [boton1outlet,boton2outlet,boton3outlet,boton4outlet]
     for (index, item) in profiles.enumerated(){
       if index == 0 {
         firstUser.text = profiles[0].name
+        boton1outlet.setImage(UIImage(named: item.imageName), for: .normal)
+       
       } else if index == 1{
         secondUser.text = profiles[1].name
+        boton2outlet.setImage(UIImage(named: item.imageName), for: .normal)
+
       } else if index == 2 {
         thirdUser.text = profiles[2].name
+        boton3outlet.setImage(UIImage(named: item.imageName), for: .normal)
+
       } else if index == 3 {
         fourthUser.text = profiles[3].name
+        boton4outlet.setImage(UIImage(named: item.imageName), for: .normal)
+
       }
     }
   }
@@ -193,7 +186,7 @@ class InitialSelectUser: UIViewController {
     
     while indexArray < profilesEmptyImages.count{
       profilesEmptyImages[indexArray]?.backgroundColor = .black
-      profilesEmptyImages[indexArray]?.setImage(UIImage(systemName: "plus"), for: .normal)
+      profilesEmptyImages[indexArray]?.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
       indexArray += 1
     }
     
