@@ -19,7 +19,7 @@ class InitialSelectUser: UIViewController {
   // MARK: - Edit y Listo
   
   @IBOutlet weak var editOutlet: UIBarButtonItem!
-  
+
   @IBAction func editAction(_ sender: Any) {
     ListoOutlet.show()
     editOutlet.hide()
@@ -40,11 +40,8 @@ class InitialSelectUser: UIViewController {
   // MARK: - Outlets
   
   @IBOutlet weak var firstUser: UILabel!
-  
   @IBOutlet weak var secondUser: UILabel!
-  
   @IBOutlet weak var thirdUser: UILabel!
-  
   @IBOutlet weak var fourthUser: UILabel!
   
   // MARK: - SET BUTTONS IMAGES
@@ -53,7 +50,7 @@ class InitialSelectUser: UIViewController {
   @IBOutlet weak var boton2outlet: UIButton!
   @IBOutlet weak var boton3outlet: UIButton!
   @IBOutlet weak var boton4outlet: UIButton!
-  
+ 
   
   // MARK: - Actions
   
@@ -82,12 +79,12 @@ class InitialSelectUser: UIViewController {
     if  profiles.count  >  1  && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[1].name
-      UsersViewModel.selectedProfileAgain = profiles[0]
+    
 
       dismiss(animated: true)
       
     } else {
-     
+      UsersViewModel.selectedProfileAgain? = profiles[1]
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
   }
@@ -98,12 +95,12 @@ class InitialSelectUser: UIViewController {
     
     if  profiles.count > 2  && editable == false {
       MoviesViewModel.selectedProfile = profiles[2].name
-      UsersViewModel.selectedProfileAgain = profiles[2]
+     
 
       dismiss(animated: true)
       
     } else {
-      
+      UsersViewModel.selectedProfileAgain? = profiles[2]
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
     
@@ -115,10 +112,11 @@ class InitialSelectUser: UIViewController {
     if  profiles.count > 3 && editable == false{
       
       MoviesViewModel.selectedProfile = profiles[3].name
-      UsersViewModel.selectedProfileAgain = profiles[3]
+    
       
       dismiss(animated: true)
     } else {
+      UsersViewModel.selectedProfileAgain? = profiles[3]
       performSegue(withIdentifier: "goToDetail", sender: nil)
 
       
@@ -127,6 +125,8 @@ class InitialSelectUser: UIViewController {
   // Mejor hacer array y recorrer para setear img. Falta loop!! 😱
   
   override func viewWillAppear(_ animated: Bool) {
+    resetScreenButtons()
+    
     print(" \n\n InitialSelectUser - \(#function)")
     ListoOutlet.hide()
     editable = false
@@ -169,5 +169,39 @@ class InitialSelectUser: UIViewController {
     ListoOutlet.hide()
     editOutlet.show()
   }
+  
+  func resetScreenButtons(){
+    
+    let usersEmptyLabels = [firstUser,secondUser,thirdUser,fourthUser]
+    let profilesEmptyImages =  [boton1outlet,boton2outlet,boton3outlet,boton4outlet]
+    usersEmptyLabels.enumerated().forEach{(index,element) in
+      
+      if  index == 0 {
+        element?.text = "USER"
+      } else if index == 1 {
+        element?.text = "USER"
+        
+      } else if index == 2{
+        element?.text = "USER"
+      } else if  index == 3{
+        element?.text = "USER"
+      }
+      
+    }
+    
+    var indexArray:Int = 0
+    
+    while indexArray < profilesEmptyImages.count{
+      profilesEmptyImages[indexArray]?.backgroundColor = .black
+      profilesEmptyImages[indexArray]?.setImage(UIImage(systemName: "plus"), for: .normal)
+      indexArray += 1
+    }
+    
+  }
+  
+  
+  
+  
+  
   
 }
