@@ -24,12 +24,19 @@ class SetUserViewController: UIViewController {
   
   @IBAction func detailImgButton2(_ sender: Any) {
     performSegue(withIdentifier: "showFotos", sender: nil)
-  
+    
   }
   
   @IBAction func delateButton(_ sender: Any) {
-    delateFunction()
+    //delateFunction()
+    print("not printinnnnnnnggggggg")
+    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {
+      print ("no se ha encontrado perfil 😭")
+      return}
+    profileManager.removeProfile(choosedProfile)
     self.navigationController?.popViewController(animated: true)
+
+    
   }
   
   @IBOutlet weak var detailImgButton: UIButton!
@@ -55,12 +62,26 @@ class SetUserViewController: UIViewController {
   }
   
   func delateFunction(){
+    
     guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {return}
+    // create the alert
+    let alert = UIAlertController(title: "Delate Alert", message: "¿Seguro que quieres borrar?", preferredStyle: UIAlertController.Style.alert)
     
-    print("delate button is working and  should wipe it out")
-    //profileManager.removeProfile(choosedProfile)
-     profileManager.MyRemoveObject(profile: choosedProfile)
+    // add the actions (buttons)
     
+    alert.addAction(UIAlertAction(title: "SI 🤩", style: UIAlertAction.Style.destructive, handler:
+                                    { action in
+                                      print("delate button is working and  should wipe it out ==> \(choosedProfile)")
+                                      self.profileManager.removeProfile(choosedProfile)
+                                      self.navigationController?.popViewController(animated: true)
+                                      print ("se ha borrado")
+                                    }))
+    
+    alert.addAction(UIAlertAction(title: "MEJOR NO 🥺 ", style: UIAlertAction.Style.default, handler: nil))
+    
+    //    print("delate button is working and  should wipe it out ==> \(choosedProfile)")
+    //    profileManager.removeProfile(choosedProfile)
+    //profileManager.MyRemoveObject(profile: choosedProfile)
     
   }
   
@@ -68,7 +89,6 @@ class SetUserViewController: UIViewController {
     
     guard let saveInfoName = detailTextField.text else {return}
     let saveInfoNameString = "\(saveInfoName)"
-    
     var profile:Profile = Profile(name: "", imageName: "", id: 0)
     
     profile.name = saveInfoNameString
@@ -78,7 +98,6 @@ class SetUserViewController: UIViewController {
     print (" -  BEFORE   profileManager.saveProfile(profile): \(profile) ")
     profileManager.saveProfile(profile)
     
-    profileManager.saveProfile(profile)
     
   }
   

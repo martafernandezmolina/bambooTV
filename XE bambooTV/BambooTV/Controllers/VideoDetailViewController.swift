@@ -10,15 +10,10 @@ import AVKit
 import AVFoundation
 import UIKit
 
-
-
 class VideoViewController: UIViewController {
   
   let moviesManager = MoviesNewsManager()
   var movieDetail: MovieDetail?
-  
-  
-  // var movieDetail: MovieDetail
   
   let  videoUrl:String = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
   var playerViewController = AVPlayerViewController()
@@ -46,7 +41,7 @@ class VideoViewController: UIViewController {
     
   }
   
-  // funcion miniatura
+  // funciÓn miniatura
   
   func getVideoFromImafe (url:URL,
                           completion: @escaping((_ image: UIImage)-> Void)) {
@@ -95,7 +90,6 @@ class VideoViewController: UIViewController {
 
       if let movieInformation:MovieDetail = movieDetail {
       
-
       self.titleOutlet.text  = movieInformation.title
       self.popularityOutlet.text = "\(movieInformation.popularity)"
       self.textDescription.text  = "\(movieInformation.overview!)"

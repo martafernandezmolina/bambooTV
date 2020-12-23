@@ -1,8 +1,7 @@
 //
 //  UserView.swift
 //  BambooTV
-//
-//  Created by Marangi  on 30/11/2020.
+//  Created by Marangi on 30/11/2020.
 //
 
 import Foundation
@@ -60,12 +59,16 @@ class InitialSelectUser: UIViewController {
     
     profiles = newProfileManager.readProfiles()
     
+   
+    
     if profiles.count > 0 && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[0].name
       dismiss(animated: true)
+      
     } else{
       
+      UsersViewModel.selectedProfileAgain? = profiles[0]
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
   }
@@ -75,7 +78,10 @@ class InitialSelectUser: UIViewController {
     print("Button two is ok 🥳")
     
     profiles = newProfileManager.readProfiles()
-    
+   
+
+  
+
     if  profiles.count  >  1  && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[1].name
@@ -84,7 +90,8 @@ class InitialSelectUser: UIViewController {
       dismiss(animated: true)
       
     } else {
-      UsersViewModel.selectedProfileAgain? = profiles[1]
+      
+      UsersViewModel.selectedProfileAgain = profiles[1]
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
   }
@@ -92,7 +99,7 @@ class InitialSelectUser: UIViewController {
   
   @IBAction func thirdButton(_ sender: Any) {
     profiles = newProfileManager.readProfiles()
-    
+   
     if  profiles.count > 2  && editable == false {
       MoviesViewModel.selectedProfile = profiles[2].name
      
@@ -100,6 +107,7 @@ class InitialSelectUser: UIViewController {
       dismiss(animated: true)
       
     } else {
+      
       UsersViewModel.selectedProfileAgain? = profiles[2]
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
@@ -108,21 +116,23 @@ class InitialSelectUser: UIViewController {
   
   @IBAction func fourthButton(_ sender: Any)  {
     profiles = newProfileManager.readProfiles()
-    
-    if  profiles.count > 3 && editable == false{
+   
+    if  profiles.count > 3 && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[3].name
-    
+     
       
       dismiss(animated: true)
     } else {
+      
+
       UsersViewModel.selectedProfileAgain? = profiles[3]
       performSegue(withIdentifier: "goToDetail", sender: nil)
 
       
     }
   }
-  // Mejor hacer array y recorrer para setear img. Falta loop!! 😱
+  
   
   override func viewWillAppear(_ animated: Bool) {
     resetScreenButtons()
@@ -133,14 +143,13 @@ class InitialSelectUser: UIViewController {
     
     profiles = newProfileManager.readProfiles()
     
-
-    
     print (" -  profiles: (profiles)")
-  //  [boton1outlet,boton2outlet,boton3outlet,boton4outlet]
+ 
     for (index, item) in profiles.enumerated(){
       if index == 0 {
         firstUser.text = profiles[0].name
         boton1outlet.setImage(UIImage(named: item.imageName), for: .normal)
+       
        
       } else if index == 1{
         secondUser.text = profiles[1].name
@@ -156,6 +165,8 @@ class InitialSelectUser: UIViewController {
 
       }
     }
+    
+    
   }
   override func viewWillDisappear(_ animated: Bool) {
     editable = false
@@ -167,6 +178,7 @@ class InitialSelectUser: UIViewController {
     
     let usersEmptyLabels = [firstUser,secondUser,thirdUser,fourthUser]
     let profilesEmptyImages =  [boton1outlet,boton2outlet,boton3outlet,boton4outlet]
+    
     usersEmptyLabels.enumerated().forEach{(index,element) in
       
       if  index == 0 {
@@ -174,16 +186,16 @@ class InitialSelectUser: UIViewController {
       } else if index == 1 {
         element?.text = "USER"
         
-      } else if index == 2{
+      } else if index == 2 {
         element?.text = "USER"
-      } else if  index == 3{
+      } else if  index == 3 {
         element?.text = "USER"
       }
       
     }
     
     var indexArray:Int = 0
-    
+    // CHANGE THESE TERRIBLE NAMES 😱
     while indexArray < profilesEmptyImages.count{
       profilesEmptyImages[indexArray]?.backgroundColor = .black
       profilesEmptyImages[indexArray]?.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
@@ -191,10 +203,12 @@ class InitialSelectUser: UIViewController {
     }
     
   }
+  func selectingProfileAgain (id: Int) -> Profile {
+     profiles = newProfileManager.readProfiles()
+     var profileeesss = profiles[id]
+     return profileeesss
+   }
+   
   
-  
-  
-  
-  
-  
+
 }
