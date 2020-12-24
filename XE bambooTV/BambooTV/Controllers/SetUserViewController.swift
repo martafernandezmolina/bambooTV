@@ -54,7 +54,7 @@ class SetUserViewController: UIViewController {
     }
   }
   
-
+  
   func delateFunction(){
     guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {
       print ("no se ha encontrado perfil 😭")
@@ -63,7 +63,7 @@ class SetUserViewController: UIViewController {
     let alert = UIAlertController(title: "Espera!", message: "¿Seguro que quieres borrar?", preferredStyle: .alert)
     
     let cancel = UIAlertAction(title: "Cancelar 🥺 ", style: .destructive, handler: { action in
-    
+      
       
     })
     alert.addAction(cancel)
@@ -87,6 +87,17 @@ class SetUserViewController: UIViewController {
   
   func saveUsersDefault(){
     
+    //‼️
+      if detailTextField.text == "" || detailTextField.text == " " || detailTextField.text == "  "  {
+      //  check = false
+      var myAlert = UIAlertController(title: "Debes escribir un usuario 😊", message:"" , preferredStyle: UIAlertController.Style.alert)
+
+        myAlert.addAction(UIAlertAction(title: "aceptar", style: .default, handler: { (action: UIAlertAction!) in
+        debugPrint("nice")
+        }))
+       
+      present(myAlert, animated: true, completion: nil)
+      } else {
     guard let saveInfoName = detailTextField.text else {return}
     let saveInfoNameString = "\(saveInfoName)"
     var profile:Profile = Profile(name: "", imageName: "", id: 0)
@@ -98,6 +109,10 @@ class SetUserViewController: UIViewController {
     print (" -  BEFORE   profileManager.saveProfile(profile): \(profile) ")
     profileManager.saveProfile(profile)
     
+    }
+    
   }
   
 }
+
+
