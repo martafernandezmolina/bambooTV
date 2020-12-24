@@ -15,10 +15,11 @@ class InitialSelectUser: UIViewController {
   var filmElements = FilmsViewController()
   var myKey = "myKey"
   
+  
   // MARK: - Edit y Listo
   
   @IBOutlet weak var editOutlet: UIBarButtonItem!
-
+  
   @IBAction func editAction(_ sender: Any) {
     ListoOutlet.show()
     editOutlet.hide()
@@ -49,7 +50,7 @@ class InitialSelectUser: UIViewController {
   @IBOutlet weak var boton2outlet: UIButton!
   @IBOutlet weak var boton3outlet: UIButton!
   @IBOutlet weak var boton4outlet: UIButton!
- 
+  
   
   // MARK: - Actions
   
@@ -59,16 +60,17 @@ class InitialSelectUser: UIViewController {
     
     profiles = newProfileManager.readProfiles()
     
-   
+    
     
     if profiles.count > 0 && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[0].name
+      UsersViewModel.selectedProfileAgain = profiles[0]
       dismiss(animated: true)
       
     } else{
       
-      UsersViewModel.selectedProfileAgain? = profiles[0]
+
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
   }
@@ -78,20 +80,19 @@ class InitialSelectUser: UIViewController {
     print("Button two is ok 🥳")
     
     profiles = newProfileManager.readProfiles()
-   
-
-  
-
+    
     if  profiles.count  >  1  && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[1].name
-    
-
+      UsersViewModel.selectedProfileAgain =  profiles [1]
+      
+      
+      
       dismiss(animated: true)
       
     } else {
-      
-      UsersViewModel.selectedProfileAgain = profiles[1]
+      MoviesViewModel.resetSelection()
+
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
   }
@@ -99,16 +100,16 @@ class InitialSelectUser: UIViewController {
   
   @IBAction func thirdButton(_ sender: Any) {
     profiles = newProfileManager.readProfiles()
-   
+    
     if  profiles.count > 2  && editable == false {
       MoviesViewModel.selectedProfile = profiles[2].name
-     
-
+      UsersViewModel.selectedProfileAgain = profiles[2]
+      
+      
       dismiss(animated: true)
       
     } else {
-      
-      UsersViewModel.selectedProfileAgain? = profiles[2]
+
       performSegue(withIdentifier: "goToDetail", sender: nil)
     }
     
@@ -116,26 +117,27 @@ class InitialSelectUser: UIViewController {
   
   @IBAction func fourthButton(_ sender: Any)  {
     profiles = newProfileManager.readProfiles()
-   
+    
     if  profiles.count > 3 && editable == false {
       
       MoviesViewModel.selectedProfile = profiles[3].name
-     
+  
+      UsersViewModel.selectedProfileAgain? = profiles [3]
       
       dismiss(animated: true)
     } else {
       
-
-      UsersViewModel.selectedProfileAgain? = profiles[3]
       performSegue(withIdentifier: "goToDetail", sender: nil)
-
+      
       
     }
   }
-  
+  override func viewDidLoad() {
+    resetScreenButtons()
+  }
   
   override func viewWillAppear(_ animated: Bool) {
-    resetScreenButtons()
+    
     
     print(" \n\n InitialSelectUser - \(#function)")
     ListoOutlet.hide()
@@ -144,52 +146,52 @@ class InitialSelectUser: UIViewController {
     profiles = newProfileManager.readProfiles()
     
     print (" -  profiles: (profiles)")
- 
+    
     for (index, item) in profiles.enumerated(){
       if index == 0 {
         firstUser.text = profiles[0].name
         boton1outlet.setImage(UIImage(named: item.imageName), for: .normal)
-       
-       
+        
+        
       } else if index == 1{
         secondUser.text = profiles[1].name
         boton2outlet.setImage(UIImage(named: item.imageName), for: .normal)
-
+        
       } else if index == 2 {
         thirdUser.text = profiles[2].name
         boton3outlet.setImage(UIImage(named: item.imageName), for: .normal)
-
+        
       } else if index == 3 {
         fourthUser.text = profiles[3].name
         boton4outlet.setImage(UIImage(named: item.imageName), for: .normal)
-
       }
     }
-    
-    
   }
+  
   override func viewWillDisappear(_ animated: Bool) {
     editable = false
     ListoOutlet.hide()
     editOutlet.show()
-  }
-  
-  func resetScreenButtons(){
+    resetScreenButtons()
     
+  }
+ 
+  func resetScreenButtons(){
+       
     let usersEmptyLabels = [firstUser,secondUser,thirdUser,fourthUser]
     let profilesEmptyImages =  [boton1outlet,boton2outlet,boton3outlet,boton4outlet]
     
     usersEmptyLabels.enumerated().forEach{(index,element) in
       
       if  index == 0 {
-        element?.text = "USER"
+        element?.text = "USUARIO"
       } else if index == 1 {
-        element?.text = "USER"
+        element?.text = "USUARIO"
         
       } else if index == 2 {
-        element?.text = "USER"
+        element?.text = "USUARIO"
       } else if  index == 3 {
-        element?.text = "USER"
+        element?.text = "USUARIO"
       }
       
     }
@@ -203,12 +205,5 @@ class InitialSelectUser: UIViewController {
     }
     
   }
-  func selectingProfileAgain (id: Int) -> Profile {
-     profiles = newProfileManager.readProfiles()
-     var profileeesss = profiles[id]
-     return profileeesss
-   }
-   
   
-
 }

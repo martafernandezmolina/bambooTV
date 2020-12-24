@@ -40,7 +40,7 @@ class AvatarDetail: UIViewController{
   
   @IBAction func imgthree(_ sender: Any) {
     UsersViewModel.usersImage = avatarImages[2]
-   
+
     UsersViewModel.idImages = 2
     self.navigationController?.popViewController(animated: true)
   }

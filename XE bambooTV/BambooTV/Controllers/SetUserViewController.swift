@@ -28,14 +28,7 @@ class SetUserViewController: UIViewController {
   }
   
   @IBAction func delateButton(_ sender: Any) {
-    //delateFunction()
-    print("not printinnnnnnnggggggg")
-    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {
-      print ("no se ha encontrado perfil 😭")
-      return}
-    profileManager.removeProfile(choosedProfile)
-    self.navigationController?.popViewController(animated: true)
-
+    delateFunction()
     
   }
   
@@ -61,27 +54,34 @@ class SetUserViewController: UIViewController {
     }
   }
   
+
   func delateFunction(){
+    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {
+      print ("no se ha encontrado perfil 😭")
+      return}
     
-    guard let choosedProfile:Profile = UsersViewModel.selectedProfileAgain else {return}
-    // create the alert
-    let alert = UIAlertController(title: "Delate Alert", message: "¿Seguro que quieres borrar?", preferredStyle: UIAlertController.Style.alert)
+    let alert = UIAlertController(title: "Espera!", message: "¿Seguro que quieres borrar?", preferredStyle: .alert)
     
-    // add the actions (buttons)
+    let cancel = UIAlertAction(title: "Cancelar 🥺 ", style: .destructive, handler: { action in
     
-    alert.addAction(UIAlertAction(title: "SI 🤩", style: UIAlertAction.Style.destructive, handler:
-                                    { action in
-                                      print("delate button is working and  should wipe it out ==> \(choosedProfile)")
-                                      self.profileManager.removeProfile(choosedProfile)
-                                      self.navigationController?.popViewController(animated: true)
-                                      print ("se ha borrado")
-                                    }))
+      
+    })
+    alert.addAction(cancel)
     
-    alert.addAction(UIAlertAction(title: "MEJOR NO 🥺 ", style: UIAlertAction.Style.default, handler: nil))
+    let aceptar = UIAlertAction(title: "Claro!", style: .default, handler: { action in
+      
+      print("delate button is working and  should wipe it out ==> \(choosedProfile)")
+      self.profileManager.removeProfile(choosedProfile)
+      self.navigationController?.popViewController(animated: true)
+      print ("se ha borrado")
+      
+    })
+    alert.addAction(aceptar)
     
-    //    print("delate button is working and  should wipe it out ==> \(choosedProfile)")
-    //    profileManager.removeProfile(choosedProfile)
-    //profileManager.MyRemoveObject(profile: choosedProfile)
+    
+    DispatchQueue.main.async(execute: {
+      self.present(alert, animated: true)
+    })
     
   }
   
@@ -97,7 +97,6 @@ class SetUserViewController: UIViewController {
     profile.id = UsersViewModel.idImages ?? 1
     print (" -  BEFORE   profileManager.saveProfile(profile): \(profile) ")
     profileManager.saveProfile(profile)
-    
     
   }
   

@@ -33,7 +33,7 @@ class VideoViewController: UIViewController {
   
   override func viewDidLoad() {
     videoDetail()
-    
+    //self.title = "Tu película"
     //playOutlet.isHidden = true
     downloadButtons.forEach { (button) in
       button.layer.cornerRadius = 10
@@ -80,20 +80,21 @@ class VideoViewController: UIViewController {
     }
   }
   
-  
+ 
   func videoDetail(){
     
     guard  let selectedMovie = MoviesViewModel.selectedMovieID else {return}
     
     moviesManager.fetchMovieDetail(movie_id: selectedMovie) { (movieDetail) in
       self.movieDetail = movieDetail
-
+   
       if let movieInformation:MovieDetail = movieDetail {
-      
+        self.textDescription.isUserInteractionEnabled = false
       self.titleOutlet.text  = movieInformation.title
-      self.popularityOutlet.text = "\(movieInformation.popularity)"
+      self.popularityOutlet.text = " Pop. \(movieInformation.popularity)"
       self.textDescription.text  = "\(movieInformation.overview!)"
       self.configurePlayer(videoURL: movieInformation.videoURL!)
+     
       
       }
       
